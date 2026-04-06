@@ -1,44 +1,17 @@
 <body>
     <div class="horizontal">
-        <div class="f5">
         <img id="track-art">
-        </img>
-        <div class="f5">
+        <div class="f5 vertical">
             <a id="track-name">
             </a>
 
             <hr>
 
-            <p id="track-artist">
-
-            </p>
+            <a id="track-artist">
+            </a>
         </div>
     </div>
-</body>
-
-<style>
-    body {
-        color: white;
-        max-height: min-content;
-        display: flex;
-        flex-grow: 0;
-        font-family: 'arial';
-        margin: 0px;
-    }
-
-    div {
-        gap: 8px;
-        display: flex;
-        flex-direction: column;
-    }
-    .horizontal {
-        flex-direction: row;
-    }
-    .f5{
-        width: 50%;
-</style>
-
-<script>
+    <script>
     const API_KEY = '04d76faaac8726e60988e14c105d421a';
     const USERNAME = 'FodaoDaSilva';
     const URL = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=1`;
@@ -77,3 +50,48 @@
     getLastFM();
     setInterval(getLastFM, 30000);
 </script>
+</body>
+
+<style>
+    body {
+        width: 100%;
+        color: white;
+        max-height: min-content;
+        display: flex;
+        flex-grow: 0;
+        font-family: 'PixelCodeL', 'arial';
+        font-size: 0.9rem;
+        margin: 0px;
+        text-align: justify;
+    }
+
+    div {
+        gap: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+    .horizontal {
+        flex-direction: row;
+    }
+    .vertical {
+        padding: 8px;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .f5{
+        width: 50%;
+    }
+    hr{
+        width: 100%;
+    }
+    #track-art {
+        height: 100%;
+        display: none;
+    }
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
+</style>
+

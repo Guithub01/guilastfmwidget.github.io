@@ -1,0 +1,39 @@
+<script>
+  const API_KEY = '04d76faaac8726e60988e14c105d421a';
+        const USERNAME = 'FodaoDaSilva';
+        const URL = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${USERNAME}&api_key=${API_KEY}&format=json&limit=1`;
+
+        async function getLastFM() {
+            try {
+                const response = await fetch(URL);
+                const data = await response.json();
+                const track = data.recenttracks.track[0];
+
+                const name = track.name;
+                const artist = track.artist['#text'];
+                const image = track.image[2]['#text']; // Tamanho médio
+
+                // Verifica se a música está tocando agora
+                const isPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
+
+                document.getElementById('track-name').innerText = `${name}`;
+                document.getElementById('track-name').href = track.url;
+                document.getElementById('track-artist').innerText = `${artist}`;
+
+                
+                if(image) {
+                    const imgTag = document.getElementById('track-art');
+                    imgTag.src = image;
+                    imgTag.style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                document.getElementById('track-name').innerText = "Não foi possível carregar a música.";
+            }
+        }
+
+        // Atualiza a cada 30 segundos
+        getLastFM();
+        setInterval(getLastFM, 30000);
+</script>
